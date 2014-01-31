@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		820F93A2189AAE7100ADB512 /* Meteor.pex in Resources */ = {isa = PBXBuildFile; fileRef = 820F93A1189AAE7100ADB512 /* Meteor.pex */; };
+		820F93A4189BB50500ADB512 /* Blue Flame.pex in Resources */ = {isa = PBXBuildFile; fileRef = 820F93A3189BB50500ADB512 /* Blue Flame.pex */; };
 		829B64C4189801FB00A2F179 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829B64C3189801FB00A2F179 /* Foundation.framework */; };
 		829B64C6189801FB00A2F179 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829B64C5189801FB00A2F179 /* CoreGraphics.framework */; };
 		829B64C8189801FB00A2F179 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829B64C7189801FB00A2F179 /* UIKit.framework */; };
@@ -32,9 +34,6 @@
 		829B651418980A6A00A2F179 /* ParticleEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 829B651118980A6A00A2F179 /* ParticleEmitter.m */; };
 		829B651518980A6A00A2F179 /* TBXMLParticleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 829B651318980A6A00A2F179 /* TBXMLParticleAdditions.m */; };
 		829B65181898150F00A2F179 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 829B65171898150F00A2F179 /* libz.dylib */; };
-		829B651B1898160B00A2F179 /* emitter.pex in Resources */ = {isa = PBXBuildFile; fileRef = 829B651A1898160B00A2F179 /* emitter.pex */; };
-		829B652318981B8700A2F179 /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 829B652218981B8700A2F179 /* Texture2D.m */; };
-		829B652518985ED500A2F179 /* particleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 829B652418985ED500A2F179 /* particleTexture.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		820F93A1189AAE7100ADB512 /* Meteor.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Meteor.pex; sourceTree = "<group>"; };
+		820F93A3189BB50500ADB512 /* Blue Flame.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Blue Flame.pex"; sourceTree = "<group>"; };
 		829B64C0189801FB00A2F179 /* ParticleEmitterDemoES2+ARC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ParticleEmitterDemoES2+ARC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		829B64C3189801FB00A2F179 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		829B64C5189801FB00A2F179 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -84,10 +85,6 @@
 		829B651318980A6A00A2F179 /* TBXMLParticleAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXMLParticleAdditions.m; sourceTree = "<group>"; };
 		829B651618980FA800A2F179 /* GLKVectorAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLKVectorAdditions.h; sourceTree = "<group>"; };
 		829B65171898150F00A2F179 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		829B651A1898160B00A2F179 /* emitter.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emitter.pex; sourceTree = "<group>"; };
-		829B652118981B8700A2F179 /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture2D.h; sourceTree = "<group>"; };
-		829B652218981B8700A2F179 /* Texture2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture2D.m; sourceTree = "<group>"; };
-		829B652418985ED500A2F179 /* particleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particleTexture.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +117,6 @@
 		829B64B7189801FB00A2F179 = {
 			isa = PBXGroup;
 			children = (
-				829B652018981B8700A2F179 /* Texture2D */,
 				829B65191898160B00A2F179 /* Particle Emitter Config */,
 				829B650F18980A6A00A2F179 /* Particle Emitter */,
 				829B6503189809C600A2F179 /* TBXML */,
@@ -246,21 +242,11 @@
 		829B65191898160B00A2F179 /* Particle Emitter Config */ = {
 			isa = PBXGroup;
 			children = (
-				829B652418985ED500A2F179 /* particleTexture.png */,
-				829B651A1898160B00A2F179 /* emitter.pex */,
+				820F93A3189BB50500ADB512 /* Blue Flame.pex */,
+				820F93A1189AAE7100ADB512 /* Meteor.pex */,
 			);
 			name = "Particle Emitter Config";
 			path = "ParticleEmitterDemoES2+ARC/Particle Emitter Config";
-			sourceTree = "<group>";
-		};
-		829B652018981B8700A2F179 /* Texture2D */ = {
-			isa = PBXGroup;
-			children = (
-				829B652118981B8700A2F179 /* Texture2D.h */,
-				829B652218981B8700A2F179 /* Texture2D.m */,
-			);
-			name = Texture2D;
-			path = "ParticleEmitterDemoES2+ARC/Texture2D";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,10 +330,10 @@
 				829B64DE189801FB00A2F179 /* Main_iPad.storyboard in Resources */,
 				829B64DB189801FB00A2F179 /* Main_iPhone.storyboard in Resources */,
 				829B64E7189801FB00A2F179 /* Images.xcassets in Resources */,
+				820F93A4189BB50500ADB512 /* Blue Flame.pex in Resources */,
+				820F93A2189AAE7100ADB512 /* Meteor.pex in Resources */,
 				829B64D2189801FB00A2F179 /* InfoPlist.strings in Resources */,
 				829B64E2189801FB00A2F179 /* Shader.vsh in Resources */,
-				829B651B1898160B00A2F179 /* emitter.pex in Resources */,
-				829B652518985ED500A2F179 /* particleTexture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +352,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				829B652318981B8700A2F179 /* Texture2D.m in Sources */,
 				829B651418980A6A00A2F179 /* ParticleEmitter.m in Sources */,
 				829B64E5189801FB00A2F179 /* SSViewController.m in Sources */,
 				829B64D8189801FB00A2F179 /* SSAppDelegate.m in Sources */,
@@ -593,6 +578,7 @@
 				829B64FF189801FB00A2F179 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		829B6500189801FB00A2F179 /* Build configuration list for PBXNativeTarget "ParticleEmitterDemoES2+ARCTests" */ = {
 			isa = XCConfigurationList;
@@ -601,6 +587,7 @@
 				829B6502189801FB00A2F179 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

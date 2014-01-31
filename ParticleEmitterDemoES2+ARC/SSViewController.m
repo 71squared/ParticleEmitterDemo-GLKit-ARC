@@ -75,19 +75,13 @@
     // get screen bounds
     CGRect bounds = [[UIScreen mainScreen] bounds];
     
-    // Setup the base effect shader for core rendering
-#warning This doesnt seem to be needed
-    self.effect = [[GLKBaseEffect alloc] init];
-    self.effect.light0.enabled = GL_TRUE;
-    self.effect.light0.diffuseColor = GLKVector4Make(0.6f, 0.6f, 1.0f, 1.0f);
-    
     // Setup the shader to be used for rendering particles
     self.particleEmitterEffect = [[GLKBaseEffect alloc] init];
     self.particleEmitterEffect.texture2d0.envMode = GLKTextureEnvModeModulate;
     self.particleEmitterEffect.useConstantColor = GL_FALSE;
     self.particleEmitterEffect.transform.projectionMatrix = GLKMatrix4MakeOrtho(0, bounds.size.width, 0, bounds.size.height, 0, 1);
  
-    _pe = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"emitter.pex" effectShader:self.particleEmitterEffect];
+    _pe = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"Blue Flame.pex" effectShader:self.particleEmitterEffect];
 
     glEnable(GL_BLEND);
 }
@@ -102,7 +96,7 @@
 
 - (void)update
 {
-    [_pe updateWithDelta:self.timeSinceLastUpdate/10];
+    [_pe updateWithDelta:self.timeSinceLastUpdate];
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect

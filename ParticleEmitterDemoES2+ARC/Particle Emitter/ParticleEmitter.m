@@ -426,17 +426,8 @@
         
         NSError *error;
         
-#warning seems the textureWithContentsOfData method is crap. better to load the image separately
-		if (fileName) {
-//        if (fileName && !fileData) {
-            
-            
-#warning Test if this works on an actual device
-            
-//            NSString *textureFileName = [fileName stringByDeletingPathExtension];
-//            NSString *textureFileNameExtension = [fileName pathExtension];
-//            NSString *path = [[NSBundle mainBundle] pathForResource:textureFileName ofType:textureFileNameExtension];
-            
+        if (fileName && !fileData) {
+            // Get path to resource
             NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
             
             // If no path is passed back then something is wrong
@@ -450,50 +441,52 @@
         
         // If texture data is present in the file then create the texture image from that data rather than an external file
         else if (fileData) {
-            texture = [GLKTextureLoader textureWithContentsOfData:[[[NSData alloc] initWithBase64EncodedString:fileData] gzipDeflate] options:options error:&error];
+            // Decode compressed data from pex
+            NSData *tiffData = [[[NSData alloc] initWithBase64EncodedString:fileData] gzipInflate];
+            
+            // Use GLKTextureLoader to load the tiff data into a texture
+            texture = [GLKTextureLoader textureWithContentsOfData:tiffData options:options error:&error];
         }
 	}
 	
 	// Load all of the values from the XML file into the particle emitter.  The functions below are using the
 	// TBXMLAdditions category.  This adds convenience methods to TBXML to help cut down on the code in this method.
-    emitterType = [aConfig intValueFromChildElementNamed:@"emitterType" parentElement:rootXMLElement];
-
-	sourcePosition = [aConfig glkVector2FromChildElementNamed:@"sourcePosition" parentElement:rootXMLElement];
-	sourcePositionVariance = [aConfig glkVector2FromChildElementNamed:@"sourcePositionVariance" parentElement:rootXMLElement];
-	speed = [aConfig floatValueFromChildElementNamed:@"speed" parentElement:rootXMLElement];
-	speedVariance = [aConfig floatValueFromChildElementNamed:@"speedVariance" parentElement:rootXMLElement];
-	particleLifespan = [aConfig floatValueFromChildElementNamed:@"particleLifeSpan" parentElement:rootXMLElement];
-	particleLifespanVariance = [aConfig floatValueFromChildElementNamed:@"particleLifespanVariance" parentElement:rootXMLElement];
-	angle = [aConfig floatValueFromChildElementNamed:@"angle" parentElement:rootXMLElement];
-	angleVariance = [aConfig floatValueFromChildElementNamed:@"angleVariance" parentElement:rootXMLElement];
-	gravity = [aConfig glkVector2FromChildElementNamed:@"gravity" parentElement:rootXMLElement];
-    radialAcceleration = [aConfig floatValueFromChildElementNamed:@"radialAcceleration" parentElement:rootXMLElement];
-    tangentialAcceleration = [aConfig floatValueFromChildElementNamed:@"tangentialAcceleration" parentElement:rootXMLElement];
-	startColor = [aConfig glkVector4FromChildElementNamed:@"startColor" parentElement:rootXMLElement];
-	startColorVariance = [aConfig glkVector4FromChildElementNamed:@"startColorVariance" parentElement:rootXMLElement];
-	finishColor = [aConfig glkVector4FromChildElementNamed:@"finishColor" parentElement:rootXMLElement];
-	finishColorVariance = [aConfig glkVector4FromChildElementNamed:@"finishColorVariance" parentElement:rootXMLElement];
-	maxParticles = [aConfig floatValueFromChildElementNamed:@"maxParticles" parentElement:rootXMLElement];
-	startParticleSize = [aConfig floatValueFromChildElementNamed:@"startParticleSize" parentElement:rootXMLElement];
-	startParticleSizeVariance = [aConfig floatValueFromChildElementNamed:@"startParticleSizeVariance" parentElement:rootXMLElement];	
-	finishParticleSize = [aConfig floatValueFromChildElementNamed:@"finishParticleSize" parentElement:rootXMLElement];
-	finishParticleSizeVariance = [aConfig floatValueFromChildElementNamed:@"finishParticleSizeVariance" parentElement:rootXMLElement];
-	duration = [aConfig floatValueFromChildElementNamed:@"duration" parentElement:rootXMLElement];
-	blendFuncSource = [aConfig intValueFromChildElementNamed:@"blendFuncSource" parentElement:rootXMLElement];
-    blendFuncDestination = [aConfig intValueFromChildElementNamed:@"blendFuncDestination" parentElement:rootXMLElement];
+    emitterType                 = [aConfig intValueFromChildElementNamed:@"emitterType" parentElement:rootXMLElement];
+	sourcePosition              = [aConfig glkVector2FromChildElementNamed:@"sourcePosition" parentElement:rootXMLElement];
+	sourcePositionVariance      = [aConfig glkVector2FromChildElementNamed:@"sourcePositionVariance" parentElement:rootXMLElement];
+	speed                       = [aConfig floatValueFromChildElementNamed:@"speed" parentElement:rootXMLElement];
+	speedVariance               = [aConfig floatValueFromChildElementNamed:@"speedVariance" parentElement:rootXMLElement];
+	particleLifespan            = [aConfig floatValueFromChildElementNamed:@"particleLifeSpan" parentElement:rootXMLElement];
+	particleLifespanVariance    = [aConfig floatValueFromChildElementNamed:@"particleLifespanVariance" parentElement:rootXMLElement];
+	angle                       = [aConfig floatValueFromChildElementNamed:@"angle" parentElement:rootXMLElement];
+	angleVariance               = [aConfig floatValueFromChildElementNamed:@"angleVariance" parentElement:rootXMLElement];
+	gravity                     = [aConfig glkVector2FromChildElementNamed:@"gravity" parentElement:rootXMLElement];
+    radialAcceleration          = [aConfig floatValueFromChildElementNamed:@"radialAcceleration" parentElement:rootXMLElement];
+    tangentialAcceleration      = [aConfig floatValueFromChildElementNamed:@"tangentialAcceleration" parentElement:rootXMLElement];
+	startColor                  = [aConfig glkVector4FromChildElementNamed:@"startColor" parentElement:rootXMLElement];
+	startColorVariance          = [aConfig glkVector4FromChildElementNamed:@"startColorVariance" parentElement:rootXMLElement];
+	finishColor                 = [aConfig glkVector4FromChildElementNamed:@"finishColor" parentElement:rootXMLElement];
+	finishColorVariance         = [aConfig glkVector4FromChildElementNamed:@"finishColorVariance" parentElement:rootXMLElement];
+	maxParticles                = [aConfig floatValueFromChildElementNamed:@"maxParticles" parentElement:rootXMLElement];
+	startParticleSize           = [aConfig floatValueFromChildElementNamed:@"startParticleSize" parentElement:rootXMLElement];
+	startParticleSizeVariance   = [aConfig floatValueFromChildElementNamed:@"startParticleSizeVariance" parentElement:rootXMLElement];
+	finishParticleSize          = [aConfig floatValueFromChildElementNamed:@"finishParticleSize" parentElement:rootXMLElement];
+	finishParticleSizeVariance  = [aConfig floatValueFromChildElementNamed:@"finishParticleSizeVariance" parentElement:rootXMLElement];
+	duration                    = [aConfig floatValueFromChildElementNamed:@"duration" parentElement:rootXMLElement];
+	blendFuncSource             = [aConfig intValueFromChildElementNamed:@"blendFuncSource" parentElement:rootXMLElement];
+    blendFuncDestination        = [aConfig intValueFromChildElementNamed:@"blendFuncDestination" parentElement:rootXMLElement];
 	
 	// These paramters are used when you want to have the particles spinning around the source location
-	maxRadius = [aConfig floatValueFromChildElementNamed:@"maxRadius" parentElement:rootXMLElement];
-	maxRadiusVariance = [aConfig floatValueFromChildElementNamed:@"maxRadiusVariance" parentElement:rootXMLElement];
-	radiusSpeed = [aConfig floatValueFromChildElementNamed:@"radiusSpeed" parentElement:rootXMLElement];
-	minRadius = [aConfig floatValueFromChildElementNamed:@"minRadius" parentElement:rootXMLElement];
-	rotatePerSecond = [aConfig floatValueFromChildElementNamed:@"rotatePerSecond" parentElement:rootXMLElement];
-	rotatePerSecondVariance = [aConfig floatValueFromChildElementNamed:@"rotatePerSecondVariance" parentElement:rootXMLElement];
-    
-    rotationStart = [aConfig floatValueFromChildElementNamed:@"rotationStart" parentElement:rootXMLElement];
-    rotationStartVariance = [aConfig floatValueFromChildElementNamed:@"rotationStartVariation" parentElement:rootXMLElement];
-    rotationEnd = [aConfig floatValueFromChildElementNamed:@"rotationEnd" parentElement:rootXMLElement];
-    rotationEndVariance = [aConfig floatValueFromChildElementNamed:@"rotationEndVariance" parentElement:rootXMLElement];
+	maxRadius                   = [aConfig floatValueFromChildElementNamed:@"maxRadius" parentElement:rootXMLElement];
+	maxRadiusVariance           = [aConfig floatValueFromChildElementNamed:@"maxRadiusVariance" parentElement:rootXMLElement];
+	radiusSpeed                 = [aConfig floatValueFromChildElementNamed:@"radiusSpeed" parentElement:rootXMLElement];
+	minRadius                   = [aConfig floatValueFromChildElementNamed:@"minRadius" parentElement:rootXMLElement];
+	rotatePerSecond             = [aConfig floatValueFromChildElementNamed:@"rotatePerSecond" parentElement:rootXMLElement];
+	rotatePerSecondVariance     = [aConfig floatValueFromChildElementNamed:@"rotatePerSecondVariance" parentElement:rootXMLElement];
+    rotationStart               = [aConfig floatValueFromChildElementNamed:@"rotationStart" parentElement:rootXMLElement];
+    rotationStartVariance       = [aConfig floatValueFromChildElementNamed:@"rotationStartVariation" parentElement:rootXMLElement];
+    rotationEnd                 = [aConfig floatValueFromChildElementNamed:@"rotationEnd" parentElement:rootXMLElement];
+    rotationEndVariance         = [aConfig floatValueFromChildElementNamed:@"rotationEndVariance" parentElement:rootXMLElement];
 	
 	// Calculate the emission rate
 	emissionRate = maxParticles / particleLifespan;
@@ -536,19 +529,12 @@
     
 	// If one of the arrays cannot be allocated throw an assertion as this is bad
 	NSAssert(particles && quads, @"ERROR - ParticleEmitter: Could not allocate arrays.");
-
-    // Create the vertex array that is going to store the details of this models VBO and it's bindings
-#warning Is this needed
-    glGenVertexArraysOES(1, &vertexArrayName);
-    glBindVertexArrayOES(vertexArrayName);
     
 	// Generate the vertices VBO
 	glGenBuffers(1, &verticesID);
     glBindBuffer(GL_ARRAY_BUFFER, verticesID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(ParticleQuad) * maxParticles, quads, GL_DYNAMIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-    glBindVertexArrayOES(0);
     
 	// By default the particle emitter is active when created
 	active = YES;
