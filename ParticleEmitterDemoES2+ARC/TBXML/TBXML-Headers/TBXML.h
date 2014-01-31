@@ -170,8 +170,8 @@ typedef void (^TBXMLIterateAttributeBlock)(TBXMLAttribute *attribute, NSString *
 - (id)initWithXMLFile:(NSString*)aXMLFile fileExtension:(NSString*)aFileExtension __attribute__((deprecated));
 
 
-- (int) decodeData:(NSData*)data;
-- (int) decodeData:(NSData*)data withError:(NSError **)error;
+- (NSInteger) decodeData:(NSData*)data;
+- (NSInteger) decodeData:(NSData*)data withError:(NSError **)error;
 
 @end
 

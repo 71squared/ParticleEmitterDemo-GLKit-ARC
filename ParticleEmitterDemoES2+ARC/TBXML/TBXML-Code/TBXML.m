@@ -36,7 +36,7 @@
 + (NSError *) errorWithCode:(int)code;
 + (NSError *) errorWithCode:(int)code userInfo:(NSDictionary *)userInfo;
 - (void) decodeBytes;
-- (int) allocateBytesOfLength:(long)length error:(NSError **)error;
+- (NSInteger) allocateBytesOfLength:(long)length error:(NSError **)error;
 - (TBXMLElement*) nextAvailableElement;
 - (TBXMLAttribute*) nextAvailableAttribute;
 @end
@@ -107,7 +107,7 @@
 		
         
         // allocate memory for byte array
-        int result = [self allocateBytesOfLength:[aXMLString lengthOfBytesUsingEncoding:NSUTF8StringEncoding] error:error];
+        NSInteger result = [self allocateBytesOfLength:[aXMLString lengthOfBytesUsingEncoding:NSUTF8StringEncoding] error:error];
         
         // if an error occured, return
         if (result != D_TBXML_SUCCESS) 
@@ -207,17 +207,17 @@
 	return self;
 }
 
-- (int) decodeData:(NSData*)data {
+- (NSInteger) decodeData:(NSData*)data {
     NSError *error = nil;
     return [self decodeData:data withError:&error];
 }
 
-- (int) decodeData:(NSData*)data withError:(NSError **)error {
+- (NSInteger) decodeData:(NSData*)data withError:(NSError **)error {
     
     NSError *localError = nil;
     
     // allocate memory for byte array
-    int result = [self allocateBytesOfLength:[data length] error:&localError];
+    NSInteger result = [self allocateBytesOfLength:[data length] error:&localError];
 
     // ensure no errors during allocation
     if (result == D_TBXML_SUCCESS) {
@@ -580,7 +580,7 @@
                            userInfo:userInfo];
 }
 
-- (int) allocateBytesOfLength:(long)length error:(NSError **)error {
+- (NSInteger) allocateBytesOfLength:(long)length error:(NSError **)error {
     bytesLength = length;
     
     NSError *localError = nil;
