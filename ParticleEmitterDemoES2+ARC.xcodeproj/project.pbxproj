@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		820F93A2189AAE7100ADB512 /* Meteor.pex in Resources */ = {isa = PBXBuildFile; fileRef = 820F93A1189AAE7100ADB512 /* Meteor.pex */; };
 		820F93A4189BB50500ADB512 /* Blue Flame.pex in Resources */ = {isa = PBXBuildFile; fileRef = 820F93A3189BB50500ADB512 /* Blue Flame.pex */; };
+		820F93A6189BCC9000ADB512 /* Crazy Blue.pex in Resources */ = {isa = PBXBuildFile; fileRef = 820F93A5189BCC9000ADB512 /* Crazy Blue.pex */; };
+		820F93A8189BCCF400ADB512 /* Comet.pex in Resources */ = {isa = PBXBuildFile; fileRef = 820F93A7189BCCF400ADB512 /* Comet.pex */; };
 		829B64C4189801FB00A2F179 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829B64C3189801FB00A2F179 /* Foundation.framework */; };
 		829B64C6189801FB00A2F179 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829B64C5189801FB00A2F179 /* CoreGraphics.framework */; };
 		829B64C8189801FB00A2F179 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829B64C7189801FB00A2F179 /* UIKit.framework */; };
@@ -45,8 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		820F93A1189AAE7100ADB512 /* Meteor.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Meteor.pex; sourceTree = "<group>"; };
 		820F93A3189BB50500ADB512 /* Blue Flame.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Blue Flame.pex"; sourceTree = "<group>"; };
+		820F93A5189BCC9000ADB512 /* Crazy Blue.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Crazy Blue.pex"; sourceTree = "<group>"; };
+		820F93A7189BCCF400ADB512 /* Comet.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Comet.pex; sourceTree = "<group>"; };
 		829B64C0189801FB00A2F179 /* ParticleEmitterDemoES2+ARC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ParticleEmitterDemoES2+ARC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		829B64C3189801FB00A2F179 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		829B64C5189801FB00A2F179 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -234,8 +236,9 @@
 		829B65191898160B00A2F179 /* Particle Emitter Config */ = {
 			isa = PBXGroup;
 			children = (
+				820F93A7189BCCF400ADB512 /* Comet.pex */,
+				820F93A5189BCC9000ADB512 /* Crazy Blue.pex */,
 				820F93A3189BB50500ADB512 /* Blue Flame.pex */,
-				820F93A1189AAE7100ADB512 /* Meteor.pex */,
 			);
 			name = "Particle Emitter Config";
 			path = "ParticleEmitterDemoES2+ARC/Particle Emitter Config";
@@ -322,8 +325,9 @@
 				829B64DB189801FB00A2F179 /* Main_iPhone.storyboard in Resources */,
 				829B64E7189801FB00A2F179 /* Images.xcassets in Resources */,
 				820F93A4189BB50500ADB512 /* Blue Flame.pex in Resources */,
-				820F93A2189AAE7100ADB512 /* Meteor.pex in Resources */,
+				820F93A8189BCCF400ADB512 /* Comet.pex in Resources */,
 				829B64D2189801FB00A2F179 /* InfoPlist.strings in Resources */,
+				820F93A6189BCC9000ADB512 /* Crazy Blue.pex in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

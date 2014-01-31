@@ -288,7 +288,7 @@
     glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedColoredVertex), 0);
     glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(TexturedColoredVertex), (GLvoid*) offsetof(TexturedColoredVertex, color));
     glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedColoredVertex), (GLvoid*) offsetof(TexturedColoredVertex, texture));
-	
+	   
     // Set the blend function based on the configuration
     glBlendFunc(blendFuncSource, blendFuncDestination);
 	
@@ -298,6 +298,7 @@
 
 	// Unbind the current VBO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
 	
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);	
 }

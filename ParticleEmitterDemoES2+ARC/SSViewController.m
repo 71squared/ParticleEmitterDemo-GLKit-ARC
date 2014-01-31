@@ -80,8 +80,10 @@
     self.particleEmitterEffect.texture2d0.envMode = GLKTextureEnvModeModulate;
     self.particleEmitterEffect.useConstantColor = GL_FALSE;
     self.particleEmitterEffect.transform.projectionMatrix = GLKMatrix4MakeOrtho(0, bounds.size.width, 0, bounds.size.height, 0, 1);
- 
+    
+    //_pe = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"Comet.pex" effectShader:self.particleEmitterEffect];
     _pe = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"Blue Flame.pex" effectShader:self.particleEmitterEffect];
+    //_pe = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"Crazy Blue.pex" effectShader:self.particleEmitterEffect];
 
     glEnable(GL_BLEND);
 }
