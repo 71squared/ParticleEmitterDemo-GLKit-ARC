@@ -423,6 +423,8 @@
         NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [NSNumber numberWithBool:YES],
                                   GLKTextureLoaderOriginBottomLeft,
+                                  [NSNumber numberWithBool:YES],
+                                  GLKTextureLoaderApplyPremultiplication,
                                   nil];
         
         NSError *error;
