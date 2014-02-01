@@ -28,7 +28,6 @@
 #import "ParticleEmitter.h"
 #import "TBXML.h"
 #import "TBXMLParticleAdditions.h"
-//#import "Texture2D.h"
 #import "TBXML+Compression.h"
 
 #pragma mark -
@@ -97,18 +96,17 @@
 
 - (void)updateWithDelta:(GLfloat)aDelta {
 
-	// If the emitter is active and the emission rate is greater than zero then emit
-	// particles
-	if(active && emissionRate) {
+	// If the emitter is active and the emission rate is greater than zero then emit particles
+	if (active && emissionRate) {
 		float rate = 1.0f/emissionRate;
 		emitCounter += aDelta;
-		while(particleCount < maxParticles && emitCounter > rate) {
+		while (particleCount < maxParticles && emitCounter > rate) {
 			[self addParticle];
 			emitCounter -= rate;
 		}
 
 		elapsedTime += aDelta;
-		if(duration != -1 && duration < elapsedTime)
+		if (duration != -1 && duration < elapsedTime)
 			[self stopParticleEmitter];
 	}
 	
@@ -116,7 +114,7 @@
 	particleIndex = 0;
     
     // Loop through all the particles updating their location and color
-	while(particleIndex < particleCount) {
+	while (particleIndex < particleCount) {
 
 		// Get the particle for the current particle index
 		Particle *currentParticle = &particles[particleIndex];
@@ -126,15 +124,13 @@
         currentParticle->timeToLive -= aDelta;
 		
 		// If the current particle is alive then update it
-		if(currentParticle->timeToLive > 0) {
+		if (currentParticle->timeToLive > 0) {
 			
-			// If maxRadius is greater than 0 then the particles are going to spin otherwise
-			// they are effected by speed and gravity
+			// If maxRadius is greater than 0 then the particles are going to spin otherwise they are effected by speed and gravity
 			if (emitterType == kParticleTypeRadial) {
 
                 // FIX 2
-                // Update the angle of the particle from the sourcePosition and the radius.  This is only
-				// done of the particles are rotating
+                // Update the angle of the particle from the sourcePosition and the radius.  This is only done of the particles are rotating
 				currentParticle->angle += currentParticle->degreesPerSecond * aDelta;
 				currentParticle->radius -= currentParticle->radiusDelta;
                 
@@ -145,6 +141,7 @@
 
 				if (currentParticle->radius < minRadius)
 					currentParticle->timeToLive = 0;
+                
 			} else {
 				GLKVector2 tmp, radial, tangential;
                 
@@ -252,8 +249,9 @@
 			// in the array and reduce the count of particles by one.  This causes all active particles
 			// to be packed together at the start of the array so that a particle which has run out of
 			// life will only drop into this clause once
-			if(particleIndex != particleCount - 1)
+			if (particleIndex != particleCount - 1)
 				particles[particleIndex] = particles[particleCount - 1];
+            
 			particleCount--;
 		}
 	}
@@ -291,6 +289,9 @@
 	   
     // Set the blend function based on the configuration
     glBlendFunc(blendFuncSource, blendFuncDestination);
+    //NSLog(@"%i %i", blendFuncSource, blendFuncDestination);
+    
+    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 	// Now that all of the VBOs have been used to configure the vertices, pointer size and color
 	// use glDrawArrays to draw the points
@@ -299,7 +300,6 @@
 	// Unbind the current VBO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
     
-	
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);	
 }
 
@@ -313,7 +313,7 @@
 - (BOOL)addParticle {
 	
 	// If we have already reached the maximum number of particles then do nothing
-	if(particleCount == maxParticles)
+	if (particleCount == maxParticles)
 		return NO;
 	
 	// Take the next particle out of the particle pool we have created and initialize it
@@ -410,9 +410,7 @@
 	TBXMLElement *rootXMLElement = aConfig.rootXMLElement;
 	
 	// Make sure we have a root element or we cant process this file
-	if (!rootXMLElement) {
-		NSLog(@"ERROR - ParticleEmitter: Could not find root element in particle config file.");
-	}
+    NSAssert(rootXMLElement, @"ERROR - ParticleEmitter: Could not find root element in particle config file.");
 	
 	// First thing to grab is the texture that is to be used for the point sprite
 	TBXMLElement *element = [TBXML childElementNamed:@"texture" parentElement:rootXMLElement];
@@ -420,6 +418,7 @@
 		NSString *fileName = [TBXML valueOfAttributeNamed:@"name" forElement:element];
         NSString *fileData = [TBXML valueOfAttributeNamed:@"data" forElement:element];
         
+        // Set up options for GLKTextureLoader
         NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [NSNumber numberWithBool:YES],
                                   GLKTextureLoaderOriginBottomLeft,
@@ -439,7 +438,9 @@
 			// Create a new texture which is going to be used as the texture for the point sprites. As there is
             // no texture data in the file, this is done using an external image file
 			texture = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
-                       //initWithImage:[UIImage imageNamed:fileName] filter:GL_LINEAR];
+            
+            // Throw assersion error if loading texture failed
+            NSAssert(!error, @"Unable to load texture");
 		}
         
         // If texture data is present in the file then create the texture image from that data rather than an external file
@@ -449,6 +450,9 @@
             
             // Use GLKTextureLoader to load the tiff data into a texture
             texture = [GLKTextureLoader textureWithContentsOfData:tiffData options:options error:&error];
+
+            // Throw assersion error if loading texture failed
+            NSAssert(!error, @"Unable to load texture");
         }
 	}
 	
@@ -492,7 +496,7 @@
     rotationEndVariance         = [aConfig floatValueFromChildElementNamed:@"rotationEndVariance" parentElement:rootXMLElement];
 	
 	// Calculate the emission rate
-	emissionRate = maxParticles / particleLifespan;
+	emissionRate                = maxParticles / particleLifespan;
 
 }
 

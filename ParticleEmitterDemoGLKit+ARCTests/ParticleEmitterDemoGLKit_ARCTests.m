@@ -1,6 +1,6 @@
 //
-//  ParticleEmitterDemoES2_ARCTests.m
-//  ParticleEmitterDemoES2+ARCTests
+//  ParticleEmitterDemoGLKit_ARCTests.m
+//  ParticleEmitterDemoGLKit+ARCTests
 //
 //  Created by Tom Bradley on 28/01/2014.
 //  Copyright (c) 2014 Tom Bradley. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface ParticleEmitterDemoES2_ARCTests : XCTestCase
+@interface ParticleEmitterDemoGLKit_ARCTests : XCTestCase
 
 @end
 
-@implementation ParticleEmitterDemoES2_ARCTests
+@implementation ParticleEmitterDemoGLKit_ARCTests
 
 - (void)setUp
 {

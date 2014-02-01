@@ -26,7 +26,7 @@
 		829B64EF189801FB00A2F179 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829B64C3189801FB00A2F179 /* Foundation.framework */; };
 		829B64F0189801FB00A2F179 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829B64C7189801FB00A2F179 /* UIKit.framework */; };
 		829B64F8189801FB00A2F179 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 829B64F6189801FB00A2F179 /* InfoPlist.strings */; };
-		829B64FA189801FB00A2F179 /* ParticleEmitterDemoES2_ARCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 829B64F9189801FB00A2F179 /* ParticleEmitterDemoES2_ARCTests.m */; };
+		829B64FA189801FB00A2F179 /* ParticleEmitterDemoGLKit_ARCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 829B64F9189801FB00A2F179 /* ParticleEmitterDemoGLKit_ARCTests.m */; };
 		829B650C189809C600A2F179 /* TBXML+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = 829B6505189809C600A2F179 /* TBXML+Compression.m */; };
 		829B650D189809C600A2F179 /* TBXML+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 829B6506189809C600A2F179 /* TBXML+HTTP.m */; };
 		829B650E189809C600A2F179 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 829B6507189809C600A2F179 /* TBXML.m */; };
@@ -49,16 +49,16 @@
 		820F93A3189BB50500ADB512 /* Blue Flame.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Blue Flame.pex"; sourceTree = "<group>"; };
 		820F93A5189BCC9000ADB512 /* Crazy Blue.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Crazy Blue.pex"; sourceTree = "<group>"; };
 		820F93A7189BCCF400ADB512 /* Comet.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Comet.pex; sourceTree = "<group>"; };
-		829B64C0189801FB00A2F179 /* ParticleEmitterDemoES2+ARC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ParticleEmitterDemoES2+ARC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		829B64C0189801FB00A2F179 /* ParticleEmitterDemoES2+ARC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "ParticleEmitterDemoES2+ARC.app"; path = "ParticleEmitterDemoGLKit+ARC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		829B64C3189801FB00A2F179 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		829B64C5189801FB00A2F179 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		829B64C7189801FB00A2F179 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		829B64C9189801FB00A2F179 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		829B64CB189801FB00A2F179 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		829B64CF189801FB00A2F179 /* ParticleEmitterDemoES2+ARC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ParticleEmitterDemoES2+ARC-Info.plist"; sourceTree = "<group>"; };
+		829B64CF189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ParticleEmitterDemoGLKit+ARC-Info.plist"; sourceTree = "<group>"; };
 		829B64D1189801FB00A2F179 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		829B64D3189801FB00A2F179 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		829B64D5189801FB00A2F179 /* ParticleEmitterDemoES2+ARC-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParticleEmitterDemoES2+ARC-Prefix.pch"; sourceTree = "<group>"; };
+		829B64D5189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARC-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParticleEmitterDemoGLKit+ARC-Prefix.pch"; sourceTree = "<group>"; };
 		829B64D6189801FB00A2F179 /* SSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSAppDelegate.h; sourceTree = "<group>"; };
 		829B64D7189801FB00A2F179 /* SSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSAppDelegate.m; sourceTree = "<group>"; };
 		829B64DA189801FB00A2F179 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
@@ -66,11 +66,11 @@
 		829B64E3189801FB00A2F179 /* SSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSViewController.h; sourceTree = "<group>"; };
 		829B64E4189801FB00A2F179 /* SSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSViewController.m; sourceTree = "<group>"; };
 		829B64E6189801FB00A2F179 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		829B64EC189801FB00A2F179 /* ParticleEmitterDemoES2+ARCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ParticleEmitterDemoES2+ARCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		829B64EC189801FB00A2F179 /* ParticleEmitterDemoES2+ARCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "ParticleEmitterDemoES2+ARCTests.xctest"; path = "ParticleEmitterDemoGLKit+ARCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		829B64ED189801FB00A2F179 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		829B64F5189801FB00A2F179 /* ParticleEmitterDemoES2+ARCTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ParticleEmitterDemoES2+ARCTests-Info.plist"; sourceTree = "<group>"; };
+		829B64F5189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARCTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ParticleEmitterDemoGLKit+ARCTests-Info.plist"; sourceTree = "<group>"; };
 		829B64F7189801FB00A2F179 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		829B64F9189801FB00A2F179 /* ParticleEmitterDemoES2_ARCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParticleEmitterDemoES2_ARCTests.m; sourceTree = "<group>"; };
+		829B64F9189801FB00A2F179 /* ParticleEmitterDemoGLKit_ARCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParticleEmitterDemoGLKit_ARCTests.m; sourceTree = "<group>"; };
 		829B6505189809C600A2F179 /* TBXML+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBXML+Compression.m"; sourceTree = "<group>"; };
 		829B6506189809C600A2F179 /* TBXML+HTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBXML+HTTP.m"; sourceTree = "<group>"; };
 		829B6507189809C600A2F179 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXML.m; sourceTree = "<group>"; };
@@ -117,8 +117,8 @@
 				829B65191898160B00A2F179 /* Particle Emitter Config */,
 				829B650F18980A6A00A2F179 /* Particle Emitter */,
 				829B6503189809C600A2F179 /* TBXML */,
-				829B64CD189801FB00A2F179 /* ParticleEmitterDemoES2+ARC */,
-				829B64F3189801FB00A2F179 /* ParticleEmitterDemoES2+ARCTests */,
+				829B64CD189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARC */,
+				829B64F3189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARCTests */,
 				829B64C2189801FB00A2F179 /* Frameworks */,
 				829B64C1189801FB00A2F179 /* Products */,
 			);
@@ -147,7 +147,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		829B64CD189801FB00A2F179 /* ParticleEmitterDemoES2+ARC */ = {
+		829B64CD189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARC */ = {
 			isa = PBXGroup;
 			children = (
 				829B64D6189801FB00A2F179 /* SSAppDelegate.h */,
@@ -159,33 +159,33 @@
 				829B64E6189801FB00A2F179 /* Images.xcassets */,
 				829B64CE189801FB00A2F179 /* Supporting Files */,
 			);
-			path = "ParticleEmitterDemoES2+ARC";
+			path = "ParticleEmitterDemoGLKit+ARC";
 			sourceTree = "<group>";
 		};
 		829B64CE189801FB00A2F179 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				829B64CF189801FB00A2F179 /* ParticleEmitterDemoES2+ARC-Info.plist */,
+				829B64CF189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARC-Info.plist */,
 				829B64D0189801FB00A2F179 /* InfoPlist.strings */,
 				829B64D3189801FB00A2F179 /* main.m */,
-				829B64D5189801FB00A2F179 /* ParticleEmitterDemoES2+ARC-Prefix.pch */,
+				829B64D5189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARC-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		829B64F3189801FB00A2F179 /* ParticleEmitterDemoES2+ARCTests */ = {
+		829B64F3189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARCTests */ = {
 			isa = PBXGroup;
 			children = (
-				829B64F9189801FB00A2F179 /* ParticleEmitterDemoES2_ARCTests.m */,
+				829B64F9189801FB00A2F179 /* ParticleEmitterDemoGLKit_ARCTests.m */,
 				829B64F4189801FB00A2F179 /* Supporting Files */,
 			);
-			path = "ParticleEmitterDemoES2+ARCTests";
+			path = "ParticleEmitterDemoGLKit+ARCTests";
 			sourceTree = "<group>";
 		};
 		829B64F4189801FB00A2F179 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				829B64F5189801FB00A2F179 /* ParticleEmitterDemoES2+ARCTests-Info.plist */,
+				829B64F5189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARCTests-Info.plist */,
 				829B64F6189801FB00A2F179 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -198,7 +198,7 @@
 				829B6508189809C600A2F179 /* TBXML-Headers */,
 			);
 			name = TBXML;
-			path = "ParticleEmitterDemoES2+ARC/TBXML";
+			path = "ParticleEmitterDemoGLKit+ARC/TBXML";
 			sourceTree = "<group>";
 		};
 		829B6504189809C600A2F179 /* TBXML-Code */ = {
@@ -230,7 +230,7 @@
 				829B651318980A6A00A2F179 /* TBXMLParticleAdditions.m */,
 			);
 			name = "Particle Emitter";
-			path = "ParticleEmitterDemoES2+ARC/Particle Emitter";
+			path = "ParticleEmitterDemoGLKit+ARC/Particle Emitter";
 			sourceTree = "<group>";
 		};
 		829B65191898160B00A2F179 /* Particle Emitter Config */ = {
@@ -241,15 +241,15 @@
 				820F93A3189BB50500ADB512 /* Blue Flame.pex */,
 			);
 			name = "Particle Emitter Config";
-			path = "ParticleEmitterDemoES2+ARC/Particle Emitter Config";
+			path = "ParticleEmitterDemoGLKit+ARC/Particle Emitter Config";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		829B64BF189801FB00A2F179 /* ParticleEmitterDemoES2+ARC */ = {
+		829B64BF189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 829B64FD189801FB00A2F179 /* Build configuration list for PBXNativeTarget "ParticleEmitterDemoES2+ARC" */;
+			buildConfigurationList = 829B64FD189801FB00A2F179 /* Build configuration list for PBXNativeTarget "ParticleEmitterDemoGLKit+ARC" */;
 			buildPhases = (
 				829B64BC189801FB00A2F179 /* Sources */,
 				829B64BD189801FB00A2F179 /* Frameworks */,
@@ -259,14 +259,14 @@
 			);
 			dependencies = (
 			);
-			name = "ParticleEmitterDemoES2+ARC";
+			name = "ParticleEmitterDemoGLKit+ARC";
 			productName = "ParticleEmitterDemoES2+ARC";
 			productReference = 829B64C0189801FB00A2F179 /* ParticleEmitterDemoES2+ARC.app */;
 			productType = "com.apple.product-type.application";
 		};
-		829B64EB189801FB00A2F179 /* ParticleEmitterDemoES2+ARCTests */ = {
+		829B64EB189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARCTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 829B6500189801FB00A2F179 /* Build configuration list for PBXNativeTarget "ParticleEmitterDemoES2+ARCTests" */;
+			buildConfigurationList = 829B6500189801FB00A2F179 /* Build configuration list for PBXNativeTarget "ParticleEmitterDemoGLKit+ARCTests" */;
 			buildPhases = (
 				829B64E8189801FB00A2F179 /* Sources */,
 				829B64E9189801FB00A2F179 /* Frameworks */,
@@ -277,7 +277,7 @@
 			dependencies = (
 				829B64F2189801FB00A2F179 /* PBXTargetDependency */,
 			);
-			name = "ParticleEmitterDemoES2+ARCTests";
+			name = "ParticleEmitterDemoGLKit+ARCTests";
 			productName = "ParticleEmitterDemoES2+ARCTests";
 			productReference = 829B64EC189801FB00A2F179 /* ParticleEmitterDemoES2+ARCTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -297,7 +297,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 829B64BB189801FB00A2F179 /* Build configuration list for PBXProject "ParticleEmitterDemoES2+ARC" */;
+			buildConfigurationList = 829B64BB189801FB00A2F179 /* Build configuration list for PBXProject "ParticleEmitterDemoGLKit+ARC" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -310,8 +310,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				829B64BF189801FB00A2F179 /* ParticleEmitterDemoES2+ARC */,
-				829B64EB189801FB00A2F179 /* ParticleEmitterDemoES2+ARCTests */,
+				829B64BF189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARC */,
+				829B64EB189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARCTests */,
 			);
 		};
 /* End PBXProject section */
@@ -361,7 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				829B64FA189801FB00A2F179 /* ParticleEmitterDemoES2_ARCTests.m in Sources */,
+				829B64FA189801FB00A2F179 /* ParticleEmitterDemoGLKit_ARCTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +370,7 @@
 /* Begin PBXTargetDependency section */
 		829B64F2189801FB00A2F179 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 829B64BF189801FB00A2F179 /* ParticleEmitterDemoES2+ARC */;
+			target = 829B64BF189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARC */;
 			targetProxy = 829B64F1189801FB00A2F179 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -491,8 +491,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ParticleEmitterDemoES2+ARC/ParticleEmitterDemoES2+ARC-Prefix.pch";
-				INFOPLIST_FILE = "ParticleEmitterDemoES2+ARC/ParticleEmitterDemoES2+ARC-Info.plist";
+				GCC_PREFIX_HEADER = "ParticleEmitterDemoGLKit+ARC/ParticleEmitterDemoGLKit+ARC-Prefix.pch";
+				INFOPLIST_FILE = "ParticleEmitterDemoGLKit+ARC/ParticleEmitterDemoGLKit+ARC-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -504,8 +504,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ParticleEmitterDemoES2+ARC/ParticleEmitterDemoES2+ARC-Prefix.pch";
-				INFOPLIST_FILE = "ParticleEmitterDemoES2+ARC/ParticleEmitterDemoES2+ARC-Info.plist";
+				GCC_PREFIX_HEADER = "ParticleEmitterDemoGLKit+ARC/ParticleEmitterDemoGLKit+ARC-Prefix.pch";
+				INFOPLIST_FILE = "ParticleEmitterDemoGLKit+ARC/ParticleEmitterDemoGLKit+ARC-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -515,19 +515,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ParticleEmitterDemoES2+ARC.app/ParticleEmitterDemoES2+ARC";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ParticleEmitterDemoGLKit+ARC.app/ParticleEmitterDemoGLKit+ARC";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ParticleEmitterDemoES2+ARC/ParticleEmitterDemoES2+ARC-Prefix.pch";
+				GCC_PREFIX_HEADER = "ParticleEmitterDemoGLKit+ARC/ParticleEmitterDemoGLKit+ARC-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "ParticleEmitterDemoES2+ARCTests/ParticleEmitterDemoES2+ARCTests-Info.plist";
+				INFOPLIST_FILE = "ParticleEmitterDemoGLKit+ARCTests/ParticleEmitterDemoGLKit+ARCTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -538,15 +538,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ParticleEmitterDemoES2+ARC.app/ParticleEmitterDemoES2+ARC";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ParticleEmitterDemoGLKit+ARC.app/ParticleEmitterDemoGLKit+ARC";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ParticleEmitterDemoES2+ARC/ParticleEmitterDemoES2+ARC-Prefix.pch";
-				INFOPLIST_FILE = "ParticleEmitterDemoES2+ARCTests/ParticleEmitterDemoES2+ARCTests-Info.plist";
+				GCC_PREFIX_HEADER = "ParticleEmitterDemoGLKit+ARC/ParticleEmitterDemoGLKit+ARC-Prefix.pch";
+				INFOPLIST_FILE = "ParticleEmitterDemoGLKit+ARCTests/ParticleEmitterDemoGLKit+ARCTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -556,7 +556,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		829B64BB189801FB00A2F179 /* Build configuration list for PBXProject "ParticleEmitterDemoES2+ARC" */ = {
+		829B64BB189801FB00A2F179 /* Build configuration list for PBXProject "ParticleEmitterDemoGLKit+ARC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				829B64FB189801FB00A2F179 /* Debug */,
@@ -565,7 +565,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		829B64FD189801FB00A2F179 /* Build configuration list for PBXNativeTarget "ParticleEmitterDemoES2+ARC" */ = {
+		829B64FD189801FB00A2F179 /* Build configuration list for PBXNativeTarget "ParticleEmitterDemoGLKit+ARC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				829B64FE189801FB00A2F179 /* Debug */,
@@ -574,7 +574,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		829B6500189801FB00A2F179 /* Build configuration list for PBXNativeTarget "ParticleEmitterDemoES2+ARCTests" */ = {
+		829B6500189801FB00A2F179 /* Build configuration list for PBXNativeTarget "ParticleEmitterDemoGLKit+ARCTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				829B6501189801FB00A2F179 /* Debug */,
