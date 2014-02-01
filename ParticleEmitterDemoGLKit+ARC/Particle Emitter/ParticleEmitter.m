@@ -87,7 +87,6 @@
             if (!error) {
                 // Parse the config file
                 [self parseParticleConfig:particleXML];
-                
                 [self setupArrays];
             }
 		}
@@ -98,14 +97,18 @@
 
 	// If the emitter is active and the emission rate is greater than zero then emit particles
 	if (active && emissionRate) {
-		float rate = 1.0f/emissionRate;
-		emitCounter += aDelta;
+		GLfloat rate = 1.0f/emissionRate;
+
+		if (particleCount < maxParticles)
+            emitCounter += aDelta;
+        
 		while (particleCount < maxParticles && emitCounter > rate) {
 			[self addParticle];
 			emitCounter -= rate;
 		}
 
 		elapsedTime += aDelta;
+        
 		if (duration != -1 && duration < elapsedTime)
 			[self stopParticleEmitter];
 	}
@@ -132,7 +135,7 @@
                 // FIX 2
                 // Update the angle of the particle from the sourcePosition and the radius.  This is only done of the particles are rotating
 				currentParticle->angle += currentParticle->degreesPerSecond * aDelta;
-				currentParticle->radius -= currentParticle->radiusDelta;
+				currentParticle->radius -= currentParticle->radiusDelta * aDelta;
                 
 				GLKVector2 tmp;
 				tmp.x = sourcePosition.x - cosf(currentParticle->angle) * currentParticle->radius;
@@ -146,41 +149,36 @@
 				GLKVector2 tmp, radial, tangential;
                 
                 radial = GLKVector2Zero;
-                GLKVector2 diff = GLKVector2Subtract(currentParticle->startPos, GLKVector2Zero);
-                
-                currentParticle->position = GLKVector2Subtract(currentParticle->position, diff);
-                
                 if (currentParticle->position.x || currentParticle->position.y)
                     radial = GLKVector2Normalize(currentParticle->position);
                 
-                tangential.x = radial.x;
-                tangential.y = radial.y;
-                radial = GLKVector2Multiply(radial, GLKVector2Make(currentParticle->radialAcceleration, currentParticle->radialAcceleration));
+                tangential = radial;
+                radial = GLKVector2MultiplyScalar(radial, currentParticle->radialAcceleration);
                 
                 GLfloat newy = tangential.x;
                 tangential.x = -tangential.y;
                 tangential.y = newy;
-                tangential = GLKVector2Multiply(tangential, GLKVector2Make(currentParticle->tangentialAcceleration, currentParticle->tangentialAcceleration));
+                tangential = GLKVector2MultiplyScalar(tangential, currentParticle->tangentialAcceleration);
                 
 				tmp = GLKVector2Add( GLKVector2Add(radial, tangential), gravity);
-                tmp = GLKVector2Multiply(tmp, GLKVector2Make(aDelta, aDelta));
+                tmp = GLKVector2MultiplyScalar(tmp, aDelta);
 				currentParticle->direction = GLKVector2Add(currentParticle->direction, tmp);
-				tmp = GLKVector2Multiply(currentParticle->direction, GLKVector2Make(aDelta,aDelta));
+				tmp = GLKVector2MultiplyScalar(currentParticle->direction, aDelta);
 				currentParticle->position = GLKVector2Add(currentParticle->position, tmp);
-                currentParticle->position = GLKVector2Add(currentParticle->position, diff);
 			}
 			
 			// Update the particles color
-			currentParticle->color.r += currentParticle->deltaColor.r;
-			currentParticle->color.g += currentParticle->deltaColor.g;
-			currentParticle->color.b += currentParticle->deltaColor.b;
-			currentParticle->color.a += currentParticle->deltaColor.a;
-			
+			currentParticle->color.r += currentParticle->deltaColor.r * aDelta;
+			currentParticle->color.g += currentParticle->deltaColor.g * aDelta;
+			currentParticle->color.b += currentParticle->deltaColor.b * aDelta;
+			currentParticle->color.a += currentParticle->deltaColor.a * aDelta;
+            
 			// Update the particle size
-			currentParticle->particleSize += currentParticle->particleSizeDelta;
+			currentParticle->particleSize += currentParticle->particleSizeDelta * aDelta;
+            currentParticle->particleSize = MAX(0, currentParticle->particleSize);
 
             // Update the rotation of the particle
-            currentParticle->rotation += (currentParticle->rotationDelta * aDelta);
+            currentParticle->rotation += currentParticle->rotationDelta * aDelta;
 
             // As we are rendering the particles as quads, we need to define 6 vertices for each particle
             GLfloat halfSize = currentParticle->particleSize * 0.5f;
@@ -194,7 +192,7 @@
                 float y2 = halfSize;
                 float x = currentParticle->position.x;
                 float y = currentParticle->position.y;
-                float r = (float)DEGREES_TO_RADIANS(currentParticle->rotation);
+                float r = GLKMathDegreesToRadians(currentParticle->rotation);
                 float cr = cosf(r);
                 float sr = sinf(r);
                 float ax = x1 * cr - y1 * sr + x;
@@ -263,7 +261,21 @@
 	emitCounter = 0;
 }
 
+- (void)reset
+{
+    active = YES;
+    elapsedTime = 0;
+    for (int i = 0; i < particleCount; i++) {
+        Particle *p = &particles[i];
+        p->timeToLive = 0;
+    }
+    emitCounter = 0;
+    emissionRate = maxParticles / particleLifespan;
+}
+
 - (void)renderParticles {
+    
+    glClear(GL_COLOR_BUFFER_BIT);
     
     shaderEffect.texture2d0.name = texture.name;
     shaderEffect.texture2d0.enabled = YES;
@@ -289,10 +301,7 @@
 	   
     // Set the blend function based on the configuration
     glBlendFunc(blendFuncSource, blendFuncDestination);
-    //NSLog(@"%i %i", blendFuncSource, blendFuncDestination);
     
-    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
 	// Now that all of the VBOs have been used to configure the vertices, pointer size and color
 	// use glDrawArrays to draw the points
     glDrawElements(GL_TRIANGLES, particleIndex * 6, GL_UNSIGNED_SHORT, indices);
@@ -300,7 +309,6 @@
 	// Unbind the current VBO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
     
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);	
 }
 
 @end
@@ -340,7 +348,7 @@
 	
 	// Init the direction of the particle.  The newAngle is calculated using the angle passed in and the
 	// angle variance.
-	float newAngle = (GLfloat)DEGREES_TO_RADIANS(angle + angleVariance * RANDOM_MINUS_1_TO_1());
+	float newAngle = GLKMathDegreesToRadians(angle + angleVariance * RANDOM_MINUS_1_TO_1());
 	
 	// Create a new GLKVector2 using the newAngle
 	GLKVector2 vector = GLKVector2Make(cosf(newAngle), sinf(newAngle));
@@ -350,13 +358,13 @@
 	
 	// The particles direction vector is calculated by taking the vector calculated above and
 	// multiplying that by the speed
-	particle->direction = GLKVector2Multiply(vector, GLKVector2Make(vectorSpeed, vectorSpeed));
+	particle->direction = GLKVector2MultiplyScalar(vector, vectorSpeed);
 	
 	// Set the default diameter of the particle from the source position
 	particle->radius = maxRadius + maxRadiusVariance * RANDOM_MINUS_1_TO_1();
-	particle->radiusDelta = (maxRadius / particleLifespan) * (1.0 / MAXIMUM_UPDATE_RATE);
-	particle->angle = DEGREES_TO_RADIANS(angle + angleVariance * RANDOM_MINUS_1_TO_1());
-	particle->degreesPerSecond = DEGREES_TO_RADIANS(rotatePerSecond + rotatePerSecondVariance * RANDOM_MINUS_1_TO_1());
+	particle->radiusDelta = (maxRadius - minRadius) / particleLifespan;
+	particle->angle = GLKMathDegreesToRadians(angle + angleVariance * RANDOM_MINUS_1_TO_1());
+	particle->degreesPerSecond = GLKMathDegreesToRadians(rotatePerSecond + rotatePerSecondVariance * RANDOM_MINUS_1_TO_1());
     
     particle->radialAcceleration = radialAcceleration;
     particle->tangentialAcceleration = tangentialAcceleration;
@@ -367,7 +375,7 @@
 	// Calculate the particle size using the start and finish particle sizes
 	GLfloat particleStartSize = startParticleSize + startParticleSizeVariance * RANDOM_MINUS_1_TO_1();
 	GLfloat particleFinishSize = finishParticleSize + finishParticleSizeVariance * RANDOM_MINUS_1_TO_1();
-	particle->particleSizeDelta = ((particleFinishSize - particleStartSize) / particle->timeToLive) * (1.0 / MAXIMUM_UPDATE_RATE);
+	particle->particleSizeDelta = ((particleFinishSize - particleStartSize) / particle->timeToLive);
 	particle->particleSize = MAX(0, particleStartSize);
 	
 	// Calculate the color the particle should have when it starts its life.  All the elements
@@ -392,10 +400,10 @@
 	// loop is using a fixed delta value we can calculate the delta color once saving cycles in the 
 	// update method
 	particle->color = start;
-	particle->deltaColor.r = ((end.r - start.r) / particle->timeToLive) * (1.0 / MAXIMUM_UPDATE_RATE);
-	particle->deltaColor.g = ((end.g - start.g) / particle->timeToLive)  * (1.0 / MAXIMUM_UPDATE_RATE);
-	particle->deltaColor.b = ((end.b - start.b) / particle->timeToLive)  * (1.0 / MAXIMUM_UPDATE_RATE);
-	particle->deltaColor.a = ((end.a - start.a) / particle->timeToLive)  * (1.0 / MAXIMUM_UPDATE_RATE);
+	particle->deltaColor.r = ((end.r - start.r) / particle->timeToLive);
+	particle->deltaColor.g = ((end.g - start.g) / particle->timeToLive);
+	particle->deltaColor.b = ((end.b - start.b) / particle->timeToLive);
+	particle->deltaColor.a = ((end.a - start.a) / particle->timeToLive);
     
     // Calculate the rotation
     GLfloat startA = rotationStart + rotationStartVariance * RANDOM_MINUS_1_TO_1();
@@ -420,15 +428,13 @@
         
         // Set up options for GLKTextureLoader
         NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSNumber numberWithBool:YES],
-                                  GLKTextureLoaderOriginBottomLeft,
-                                  [NSNumber numberWithBool:YES],
-                                  GLKTextureLoaderApplyPremultiplication,
+                                  @(YES), GLKTextureLoaderOriginBottomLeft,
+                                  @(YES), GLKTextureLoaderApplyPremultiplication,
                                   nil];
         
         NSError *error;
         
-        if (fileName && !fileData) {
+        if (fileName && !fileData.length) {
             // Get path to resource
             NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
             
@@ -444,7 +450,7 @@
 		}
         
         // If texture data is present in the file then create the texture image from that data rather than an external file
-        else if (fileData) {
+        else if (fileData.length) {
             // Decode compressed data from pex
             NSData *tiffData = [[[NSData alloc] initWithBase64EncodedString:fileData] gzipInflate];
             
@@ -486,17 +492,17 @@
 	// These paramters are used when you want to have the particles spinning around the source location
 	maxRadius                   = [aConfig floatValueFromChildElementNamed:@"maxRadius" parentElement:rootXMLElement];
 	maxRadiusVariance           = [aConfig floatValueFromChildElementNamed:@"maxRadiusVariance" parentElement:rootXMLElement];
-	radiusSpeed                 = [aConfig floatValueFromChildElementNamed:@"radiusSpeed" parentElement:rootXMLElement];
 	minRadius                   = [aConfig floatValueFromChildElementNamed:@"minRadius" parentElement:rootXMLElement];
 	rotatePerSecond             = [aConfig floatValueFromChildElementNamed:@"rotatePerSecond" parentElement:rootXMLElement];
 	rotatePerSecondVariance     = [aConfig floatValueFromChildElementNamed:@"rotatePerSecondVariance" parentElement:rootXMLElement];
     rotationStart               = [aConfig floatValueFromChildElementNamed:@"rotationStart" parentElement:rootXMLElement];
-    rotationStartVariance       = [aConfig floatValueFromChildElementNamed:@"rotationStartVariation" parentElement:rootXMLElement];
+    rotationStartVariance       = [aConfig floatValueFromChildElementNamed:@"rotationStartVariance" parentElement:rootXMLElement];
     rotationEnd                 = [aConfig floatValueFromChildElementNamed:@"rotationEnd" parentElement:rootXMLElement];
     rotationEndVariance         = [aConfig floatValueFromChildElementNamed:@"rotationEndVariance" parentElement:rootXMLElement];
 	
 	// Calculate the emission rate
 	emissionRate                = maxParticles / particleLifespan;
+    emitCounter                 = 0;
 
 }
 

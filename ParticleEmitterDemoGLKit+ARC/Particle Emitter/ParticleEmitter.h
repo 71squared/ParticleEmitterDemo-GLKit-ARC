@@ -72,16 +72,11 @@ typedef struct {
 	GLfloat timeToLive;
 } Particle;
 
-#define MAXIMUM_UPDATE_RATE 90.0f	// The maximum number of updates that occur per frame
-
 // The particleEmitter allows you to define parameters that are used when generating particles.
 // These particles are OpenGL particle sprites that based on the parameters provided each have
 // their own characteristics such as speed, lifespan, start and end colors etc.  Using these
 // particle emitters allows you to create organic looking effects such as smoke, fire and 
 // explosions.
-//
-// The design for this particle emitter was influenced by the point sprite particle system
-// used in the Cocos2D game engine
 //
 @interface ParticleEmitter : NSObject {
 
@@ -131,7 +126,6 @@ typedef struct {
 	///////////////////// Render
     GLKBaseEffect *shaderEffect;
 	GLuint verticesID;			// Holds the buffer name of the VBO that stores the color and vertices info for the particles
-    GLuint vertexObjectID;
 	Particle *particles;		// Array of particles that hold the particle emitters particle details
 	ParticleQuad *quads;        // Array holding quad information for each particle;
     GLushort *indices;          // Array holding an index reference into an array of quads for rendering
@@ -153,5 +147,8 @@ typedef struct {
 
 // Stops the particle emitter
 - (void)stopParticleEmitter;
+
+// Resets the particle system
+- (void)reset;
 
 @end

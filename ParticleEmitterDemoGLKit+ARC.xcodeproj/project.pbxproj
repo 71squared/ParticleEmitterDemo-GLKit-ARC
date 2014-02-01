@@ -33,6 +33,8 @@
 		829B651418980A6A00A2F179 /* ParticleEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 829B651118980A6A00A2F179 /* ParticleEmitter.m */; };
 		829B651518980A6A00A2F179 /* TBXMLParticleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 829B651318980A6A00A2F179 /* TBXMLParticleAdditions.m */; };
 		829B65181898150F00A2F179 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 829B65171898150F00A2F179 /* libz.dylib */; };
+		8FED3680189D335300CFD595 /* green.pex in Resources */ = {isa = PBXBuildFile; fileRef = 8FED367F189D335300CFD595 /* green.pex */; };
+		8FED3682189D511000CFD595 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FED3681189D511000CFD595 /* green.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +51,7 @@
 		820F93A3189BB50500ADB512 /* Blue Flame.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Blue Flame.pex"; sourceTree = "<group>"; };
 		820F93A5189BCC9000ADB512 /* Crazy Blue.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Crazy Blue.pex"; sourceTree = "<group>"; };
 		820F93A7189BCCF400ADB512 /* Comet.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Comet.pex; sourceTree = "<group>"; };
-		829B64C0189801FB00A2F179 /* ParticleEmitterDemoES2+ARC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "ParticleEmitterDemoES2+ARC.app"; path = "ParticleEmitterDemoGLKit+ARC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		829B64C0189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ParticleEmitterDemoGLKit+ARC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		829B64C3189801FB00A2F179 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		829B64C5189801FB00A2F179 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		829B64C7189801FB00A2F179 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -66,7 +68,7 @@
 		829B64E3189801FB00A2F179 /* SSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSViewController.h; sourceTree = "<group>"; };
 		829B64E4189801FB00A2F179 /* SSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSViewController.m; sourceTree = "<group>"; };
 		829B64E6189801FB00A2F179 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		829B64EC189801FB00A2F179 /* ParticleEmitterDemoES2+ARCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "ParticleEmitterDemoES2+ARCTests.xctest"; path = "ParticleEmitterDemoGLKit+ARCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		829B64EC189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ParticleEmitterDemoGLKit+ARCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		829B64ED189801FB00A2F179 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		829B64F5189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARCTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ParticleEmitterDemoGLKit+ARCTests-Info.plist"; sourceTree = "<group>"; };
 		829B64F7189801FB00A2F179 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -82,6 +84,8 @@
 		829B651218980A6A00A2F179 /* TBXMLParticleAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXMLParticleAdditions.h; sourceTree = "<group>"; };
 		829B651318980A6A00A2F179 /* TBXMLParticleAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXMLParticleAdditions.m; sourceTree = "<group>"; };
 		829B65171898150F00A2F179 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		8FED367F189D335300CFD595 /* green.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = green.pex; path = ../../../../../../Desktop/green.pex; sourceTree = "<group>"; };
+		8FED3681189D511000CFD595 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = green.png; path = ../../../../../../Desktop/green.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +131,8 @@
 		829B64C1189801FB00A2F179 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				829B64C0189801FB00A2F179 /* ParticleEmitterDemoES2+ARC.app */,
-				829B64EC189801FB00A2F179 /* ParticleEmitterDemoES2+ARCTests.xctest */,
+				829B64C0189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARC.app */,
+				829B64EC189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARCTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,7 +240,9 @@
 		829B65191898160B00A2F179 /* Particle Emitter Config */ = {
 			isa = PBXGroup;
 			children = (
+				8FED367F189D335300CFD595 /* green.pex */,
 				820F93A7189BCCF400ADB512 /* Comet.pex */,
+				8FED3681189D511000CFD595 /* green.png */,
 				820F93A5189BCC9000ADB512 /* Crazy Blue.pex */,
 				820F93A3189BB50500ADB512 /* Blue Flame.pex */,
 			);
@@ -261,7 +267,7 @@
 			);
 			name = "ParticleEmitterDemoGLKit+ARC";
 			productName = "ParticleEmitterDemoES2+ARC";
-			productReference = 829B64C0189801FB00A2F179 /* ParticleEmitterDemoES2+ARC.app */;
+			productReference = 829B64C0189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARC.app */;
 			productType = "com.apple.product-type.application";
 		};
 		829B64EB189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARCTests */ = {
@@ -279,7 +285,7 @@
 			);
 			name = "ParticleEmitterDemoGLKit+ARCTests";
 			productName = "ParticleEmitterDemoES2+ARCTests";
-			productReference = 829B64EC189801FB00A2F179 /* ParticleEmitterDemoES2+ARCTests.xctest */;
+			productReference = 829B64EC189801FB00A2F179 /* ParticleEmitterDemoGLKit+ARCTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -324,8 +330,10 @@
 				829B64DE189801FB00A2F179 /* Main_iPad.storyboard in Resources */,
 				829B64DB189801FB00A2F179 /* Main_iPhone.storyboard in Resources */,
 				829B64E7189801FB00A2F179 /* Images.xcassets in Resources */,
+				8FED3682189D511000CFD595 /* green.png in Resources */,
 				820F93A4189BB50500ADB512 /* Blue Flame.pex in Resources */,
 				820F93A8189BCCF400ADB512 /* Comet.pex in Resources */,
+				8FED3680189D335300CFD595 /* green.pex in Resources */,
 				829B64D2189801FB00A2F179 /* InfoPlist.strings in Resources */,
 				820F93A6189BCC9000ADB512 /* Crazy Blue.pex in Resources */,
 			);
