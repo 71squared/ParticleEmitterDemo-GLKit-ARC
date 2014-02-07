@@ -129,26 +129,31 @@
 		// If the current particle is alive then update it
 		if (currentParticle->timeToLive > 0) {
 			
-			// If maxRadius is greater than 0 then the particles are going to spin otherwise they are effected by speed and gravity
-			if (emitterType == kParticleTypeRadial) {
-
+            // If maxRadius is greater than 0 then the particles are going to spin otherwise they are effected by speed and gravity
+            if (emitterType == kParticleTypeRadial) {
+                
                 // FIX 2
                 // Update the angle of the particle from the sourcePosition and the radius.  This is only done of the particles are rotating
-				currentParticle->angle += currentParticle->degreesPerSecond * aDelta;
-				currentParticle->radius -= currentParticle->radiusDelta * aDelta;
+                currentParticle->angle += currentParticle->degreesPerSecond * aDelta;
+                currentParticle->radius -= currentParticle->radiusDelta * aDelta;
                 
-				GLKVector2 tmp;
-				tmp.x = sourcePosition.x - cosf(currentParticle->angle) * currentParticle->radius;
-				tmp.y = sourcePosition.y - sinf(currentParticle->angle) * currentParticle->radius;
-				currentParticle->position = tmp;
-
-				if (currentParticle->radius < minRadius)
-					currentParticle->timeToLive = 0;
+                GLKVector2 tmp;
+                tmp.x = sourcePosition.x - cosf(currentParticle->angle) * currentParticle->radius;
+                tmp.y = sourcePosition.y - sinf(currentParticle->angle) * currentParticle->radius;
+                currentParticle->position = tmp;
                 
-			} else {
-				GLKVector2 tmp, radial, tangential;
+                if (currentParticle->radius < minRadius)
+                    currentParticle->timeToLive = 0;
+                
+            } else {
+                GLKVector2 tmp, radial, tangential;
                 
                 radial = GLKVector2Zero;
+                
+                // By default this emitters particles are moved relative to the emitter node position
+                GLKVector2 positionDifference = GLKVector2Subtract(currentParticle->startPos, GLKVector2Zero);
+                currentParticle->position = GLKVector2Subtract(currentParticle->position, positionDifference);
+                
                 if (currentParticle->position.x || currentParticle->position.y)
                     radial = GLKVector2Normalize(currentParticle->position);
                 
@@ -160,18 +165,32 @@
                 tangential.y = newy;
                 tangential = GLKVector2MultiplyScalar(tangential, currentParticle->tangentialAcceleration);
                 
-				tmp = GLKVector2Add( GLKVector2Add(radial, tangential), gravity);
+                tmp = GLKVector2Add( GLKVector2Add(radial, tangential), gravity);
                 tmp = GLKVector2MultiplyScalar(tmp, aDelta);
-				currentParticle->direction = GLKVector2Add(currentParticle->direction, tmp);
-				tmp = GLKVector2MultiplyScalar(currentParticle->direction, aDelta);
-				currentParticle->position = GLKVector2Add(currentParticle->position, tmp);
-			}
+                currentParticle->direction = GLKVector2Add(currentParticle->direction, tmp);
+                tmp = GLKVector2MultiplyScalar(currentParticle->direction, aDelta);
+                currentParticle->position = GLKVector2Add(currentParticle->position, tmp);
+                
+                // Now apply the difference calculated early causing the particles to be relative in position to the emitter position
+                currentParticle->position = GLKVector2Add(currentParticle->position, positionDifference);
+            }
 			
 			// Update the particles color
-			currentParticle->color.r += currentParticle->deltaColor.r * aDelta;
-			currentParticle->color.g += currentParticle->deltaColor.g * aDelta;
-			currentParticle->color.b += currentParticle->deltaColor.b * aDelta;
-			currentParticle->color.a += currentParticle->deltaColor.a * aDelta;
+			currentParticle->color.r += (currentParticle->deltaColor.r * aDelta);
+			currentParticle->color.g += (currentParticle->deltaColor.g * aDelta);
+			currentParticle->color.b += (currentParticle->deltaColor.b * aDelta);
+			currentParticle->color.a += (currentParticle->deltaColor.a * aDelta);
+
+            GLKVector4 c;
+
+            if (_opacityModifyRGB) {
+                c = (GLKVector4){currentParticle->color.r * currentParticle->color.a,
+                    currentParticle->color.g * currentParticle->color.a,
+                    currentParticle->color.b * currentParticle->color.a,
+                    currentParticle->color.a};
+            } else {
+                c = currentParticle->color;
+            }
             
 			// Update the particle size
 			currentParticle->particleSize += currentParticle->particleSizeDelta * aDelta;
@@ -206,37 +225,37 @@
                 
                 quads[particleIndex].bl.vertex.x = ax;
                 quads[particleIndex].bl.vertex.y = ay;
-                quads[particleIndex].bl.color = currentParticle->color;
+                quads[particleIndex].bl.color = c;
                 
                 quads[particleIndex].br.vertex.x = bx;
                 quads[particleIndex].br.vertex.y = by;
-                quads[particleIndex].br.color = currentParticle->color;
+                quads[particleIndex].br.color = c;
                 
                 quads[particleIndex].tl.vertex.x = dx;
                 quads[particleIndex].tl.vertex.y = dy;
-                quads[particleIndex].tl.color = currentParticle->color;
+                quads[particleIndex].tl.color = c;
                 
                 quads[particleIndex].tr.vertex.x = cx;
                 quads[particleIndex].tr.vertex.y = cy;
-                quads[particleIndex].tr.color = currentParticle->color;
+                quads[particleIndex].tr.color = c;
             } else {
                 // Using the position of the particle, work out the four vertices for the quad that will hold the particle
                 // and load those into the quads array.
                 quads[particleIndex].bl.vertex.x = currentParticle->position.x - halfSize;
                 quads[particleIndex].bl.vertex.y = currentParticle->position.y - halfSize;
-                quads[particleIndex].bl.color = currentParticle->color;
+                quads[particleIndex].bl.color = c;
                 
                 quads[particleIndex].br.vertex.x = currentParticle->position.x + halfSize;
                 quads[particleIndex].br.vertex.y = currentParticle->position.y - halfSize;
-                quads[particleIndex].br.color = currentParticle->color;
+                quads[particleIndex].br.color = c;
                 
                 quads[particleIndex].tl.vertex.x = currentParticle->position.x - halfSize;
                 quads[particleIndex].tl.vertex.y = currentParticle->position.y + halfSize;
-                quads[particleIndex].tl.color = currentParticle->color;
+                quads[particleIndex].tl.color = c;
                 
                 quads[particleIndex].tr.vertex.x = currentParticle->position.x + halfSize;
                 quads[particleIndex].tr.vertex.y = currentParticle->position.y + halfSize;
-                quads[particleIndex].tr.color = currentParticle->color;
+                quads[particleIndex].tr.color = c;
             }
 
 			// Update the particle and vertex counters
@@ -282,10 +301,6 @@
     
     [shaderEffect prepareToDraw];
     
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
-    glEnableVertexAttribArray(GLKVertexAttribColor);
-    
 	// Bind to the verticesID VBO and popuate it with the necessary vertex, color and texture informaiton
 	glBindBuffer(GL_ARRAY_BUFFER, verticesID);
     
@@ -293,6 +308,10 @@
     // would be an allocation and copy. The copy also only takes over the number of live particles. This provides a nice performance
     // boost.
     glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(ParticleQuad) * particleIndex, quads);
+    
+    glEnableVertexAttribArray(GLKVertexAttribPosition);
+    glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+    glEnableVertexAttribArray(GLKVertexAttribColor);
 
 	// Configure the vertex pointer which will use the currently bound VBO for its data
     glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedColoredVertex), 0);
@@ -335,7 +354,6 @@
 	return YES;
 }
 
-
 - (void)initParticle:(Particle*)particle {
 	
 	// Init the position of the particle.  This is based on the source position of the particle emitter
@@ -348,29 +366,29 @@
 	
 	// Init the direction of the particle.  The newAngle is calculated using the angle passed in and the
 	// angle variance.
-	float newAngle = GLKMathDegreesToRadians(angle + angleVariance * RANDOM_MINUS_1_TO_1());
+	GLfloat newAngle = GLKMathDegreesToRadians(angle + angleVariance * RANDOM_MINUS_1_TO_1());
 	
 	// Create a new GLKVector2 using the newAngle
 	GLKVector2 vector = GLKVector2Make(cosf(newAngle), sinf(newAngle));
 	
 	// Calculate the vectorSpeed using the speed and speedVariance which has been passed in
-	float vectorSpeed = speed + speedVariance * RANDOM_MINUS_1_TO_1();
+	GLfloat vectorSpeed = speed + speedVariance * RANDOM_MINUS_1_TO_1();
 	
 	// The particles direction vector is calculated by taking the vector calculated above and
 	// multiplying that by the speed
 	particle->direction = GLKVector2MultiplyScalar(vector, vectorSpeed);
 	
+    // Calculate the particles life span using the life span and variance passed in
+	particle->timeToLive = MAX(0, particleLifespan + particleLifespanVariance * RANDOM_MINUS_1_TO_1());
+    
 	// Set the default diameter of the particle from the source position
 	particle->radius = maxRadius + maxRadiusVariance * RANDOM_MINUS_1_TO_1();
-	particle->radiusDelta = (maxRadius - minRadius) / particleLifespan;
+	particle->radiusDelta = maxRadius / particle->timeToLive;
 	particle->angle = GLKMathDegreesToRadians(angle + angleVariance * RANDOM_MINUS_1_TO_1());
 	particle->degreesPerSecond = GLKMathDegreesToRadians(rotatePerSecond + rotatePerSecondVariance * RANDOM_MINUS_1_TO_1());
     
-    particle->radialAcceleration = radialAcceleration;
-    particle->tangentialAcceleration = tangentialAcceleration;
-	
-	// Calculate the particles life span using the life span and variance passed in
-	particle->timeToLive = MAX(0, particleLifespan + particleLifespanVariance * RANDOM_MINUS_1_TO_1());
+    particle->radialAcceleration = radialAcceleration + radialAccelVariance * RANDOM_MINUS_1_TO_1();
+    particle->tangentialAcceleration = tangentialAcceleration + tangentialAccelVariance * RANDOM_MINUS_1_TO_1();
 	
 	// Calculate the particle size using the start and finish particle sizes
 	GLfloat particleStartSize = startParticleSize + startParticleSizeVariance * RANDOM_MINUS_1_TO_1();
@@ -395,11 +413,12 @@
 	end.a = finishColor.a + finishColorVariance.a * RANDOM_MINUS_1_TO_1();
 	
 	// Calculate the delta which is to be applied to the particles color during each cycle of its
-	// life.  The delta calculation uses the life span of the particle to make sure that the 
+	// life.  The delta calculation uses the life span of the particle to make sure that the
 	// particles color will transition from the start to end color during its life time.  As the game
-	// loop is using a fixed delta value we can calculate the delta color once saving cycles in the 
+	// loop is using a fixed delta value we can calculate the delta color once saving cycles in the
 	// update method
-	particle->color = start;
+	
+    particle->color = start;
 	particle->deltaColor.r = ((end.r - start.r) / particle->timeToLive);
 	particle->deltaColor.g = ((end.g - start.g) / particle->timeToLive);
 	particle->deltaColor.b = ((end.b - start.b) / particle->timeToLive);
@@ -410,7 +429,7 @@
     GLfloat endA = rotationEnd + rotationEndVariance * RANDOM_MINUS_1_TO_1();
     particle->rotation = startA;
     particle->rotationDelta = (endA - startA) / particle->timeToLive;
-
+    
 }
 
 - (void)parseParticleConfig:(TBXML*)aConfig {
@@ -420,47 +439,6 @@
 	// Make sure we have a root element or we cant process this file
     NSAssert(rootXMLElement, @"ERROR - ParticleEmitter: Could not find root element in particle config file.");
 	
-	// First thing to grab is the texture that is to be used for the point sprite
-	TBXMLElement *element = [TBXML childElementNamed:@"texture" parentElement:rootXMLElement];
-	if (element) {
-		NSString *fileName = [TBXML valueOfAttributeNamed:@"name" forElement:element];
-        NSString *fileData = [TBXML valueOfAttributeNamed:@"data" forElement:element];
-        
-        // Set up options for GLKTextureLoader
-        NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  @(YES), GLKTextureLoaderOriginBottomLeft,
-                                  @(YES), GLKTextureLoaderApplyPremultiplication,
-                                  nil];
-        
-        NSError *error;
-        
-        if (fileName && !fileData.length) {
-            // Get path to resource
-            NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
-            
-            // If no path is passed back then something is wrong
-            NSAssert1(path, @"Unable to find texture file: %@", path);
-            
-			// Create a new texture which is going to be used as the texture for the point sprites. As there is
-            // no texture data in the file, this is done using an external image file
-			texture = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
-            
-            // Throw assersion error if loading texture failed
-            NSAssert(!error, @"Unable to load texture");
-		}
-        
-        // If texture data is present in the file then create the texture image from that data rather than an external file
-        else if (fileData.length) {
-            // Decode compressed data from pex
-            NSData *tiffData = [[[NSData alloc] initWithBase64EncodedString:fileData] gzipInflate];
-            
-            // Use GLKTextureLoader to load the tiff data into a texture
-            texture = [GLKTextureLoader textureWithContentsOfData:tiffData options:options error:&error];
-
-            // Throw assersion error if loading texture failed
-            NSAssert(!error, @"Unable to load texture");
-        }
-	}
 	
 	// Load all of the values from the XML file into the particle emitter.  The functions below are using the
 	// TBXMLAdditions category.  This adds convenience methods to TBXML to help cut down on the code in this method.
@@ -476,6 +454,7 @@
 	gravity                     = [aConfig glkVector2FromChildElementNamed:@"gravity" parentElement:rootXMLElement];
     radialAcceleration          = [aConfig floatValueFromChildElementNamed:@"radialAcceleration" parentElement:rootXMLElement];
     tangentialAcceleration      = [aConfig floatValueFromChildElementNamed:@"tangentialAcceleration" parentElement:rootXMLElement];
+    tangentialAccelVariance     = [aConfig floatValueFromChildElementNamed:@"tangentialAccelVariance" parentElement:rootXMLElement];
 	startColor                  = [aConfig glkVector4FromChildElementNamed:@"startColor" parentElement:rootXMLElement];
 	startColorVariance          = [aConfig glkVector4FromChildElementNamed:@"startColorVariance" parentElement:rootXMLElement];
 	finishColor                 = [aConfig glkVector4FromChildElementNamed:@"finishColor" parentElement:rootXMLElement];
@@ -503,6 +482,75 @@
 	// Calculate the emission rate
 	emissionRate                = maxParticles / particleLifespan;
     emitCounter                 = 0;
+    
+    
+	// First thing to grab is the texture that is to be used for the point sprite
+	TBXMLElement *element = [TBXML childElementNamed:@"texture" parentElement:rootXMLElement];
+	if (element) {
+		NSString *fileName = [TBXML valueOfAttributeNamed:@"name" forElement:element];
+        NSString *fileData = [TBXML valueOfAttributeNamed:@"data" forElement:element];
+        
+        NSData *tiffData = nil;
+        NSError *error;
+        
+        if (fileName && !fileData.length) {
+            // Get path to resource
+            NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
+            
+            // If no path is passed back then something is wrong
+            NSAssert1(path, @"Unable to find texture file: %@", path);
+            
+			// Create a new texture which is going to be used as the texture for the point sprites. As there is
+            // no texture data in the file, this is done using an external image file
+			tiffData = [[NSData alloc] initWithContentsOfFile:path options:NSDataReadingUncached error:&error];
+            
+            // Throw assersion error if loading texture failed
+            NSAssert(!error, @"Unable to load texture");
+		}
+        
+        // If texture data is present in the file then create the texture image from that data rather than an external file
+        else if (fileData.length) {
+            // Decode compressed tiff data
+            tiffData = [[[NSData alloc] initWithBase64EncodedString:fileData] gzipInflate];
+        }
+        
+        // Create a UIImage from the tiff data to extract colorspace and alpha info
+        UIImage *image = [UIImage imageWithData:tiffData];
+        CGImageAlphaInfo info = CGImageGetAlphaInfo(image.CGImage);
+        CGColorSpaceRef colorSpace = CGImageGetColorSpace(image.CGImage);
+        
+        // Detect if the image contains alpha data
+        BOOL hasAlpha = ((info == kCGImageAlphaPremultipliedLast) ||
+                         (info == kCGImageAlphaPremultipliedFirst) ||
+                         (info == kCGImageAlphaLast) ||
+                         (info == kCGImageAlphaFirst) ? YES : NO);
+        
+        // Detect if alpha data is premultiplied
+        BOOL premultiplied = colorSpace && hasAlpha;
+        
+        // Is opacity modification required
+        _opacityModifyRGB = NO;
+        if (blendFuncSource == GL_ONE && blendFuncDestination == GL_ONE_MINUS_SRC_ALPHA) {
+            if (premultiplied)
+                _opacityModifyRGB = YES;
+            else {
+                blendFuncSource = GL_SRC_ALPHA;
+                blendFuncDestination = GL_ONE_MINUS_SRC_ALPHA;
+            }
+        }
+        
+        // Set up options for GLKTextureLoader
+        NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  @(YES), GLKTextureLoaderOriginBottomLeft,
+                                  @(premultiplied), GLKTextureLoaderApplyPremultiplication,
+                                  nil];
+        
+        // Use GLKTextureLoader to load the tiff data into a texture
+        texture = [GLKTextureLoader textureWithContentsOfData:tiffData options:options error:&error];
+        
+        // Throw assersion error if loading texture failed
+        NSAssert(!error, @"Unable to load texture");
+	}
 
 }
 

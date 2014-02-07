@@ -22,8 +22,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-//@class Texture2D;
-
 // Particle type
 enum kParticleTypes {
 	kParticleTypeGravity,
@@ -106,6 +104,8 @@ typedef struct {
     GLuint vertexArrayName;
 
 	int blendFuncSource, blendFuncDestination;
+    
+    BOOL _opacityModifyRGB;
 
 	//////////////////// Particle ivars only used when a maxRadius value is provided.  These values are used for
 	//////////////////// the special purpose of creating the spinning portal emitter
@@ -121,7 +121,6 @@ typedef struct {
 	BOOL useTexture;
 	GLint particleIndex;		// Stores the number of particles that are going to be rendered
     GLint vertexIndex;         // Stores the index of the vertices being used for each particle
-
 	
 	///////////////////// Render
     GLKBaseEffect *shaderEffect;

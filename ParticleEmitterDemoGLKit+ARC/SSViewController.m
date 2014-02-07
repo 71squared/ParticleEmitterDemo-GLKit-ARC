@@ -16,6 +16,8 @@
 @property (strong, nonatomic) GLKBaseEffect     *effect;
 @property (strong, nonatomic) ParticleEmitter   *pe;
 @property (strong, nonatomic) GLKBaseEffect     *particleEmitterEffect;
+@property (strong, nonatomic) NSMutableArray    *particleEmitters;
+@property (strong, nonatomic) NSEnumerator      *particleEnumerator;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -82,13 +84,61 @@
     self.particleEmitterEffect.useConstantColor = GL_FALSE;
     self.particleEmitterEffect.transform.projectionMatrix = GLKMatrix4MakeOrtho(0, bounds.size.width, 0, bounds.size.height, 0, 1);
     
-    //_pe = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"Comet.pex" effectShader:self.particleEmitterEffect];
-//    _pe = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"Blue Flame.pex" effectShader:self.particleEmitterEffect];
-    //_pe = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"Crazy Blue.pex" effectShader:self.particleEmitterEffect];
-    _pe = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"green.pex" effectShader:self.particleEmitterEffect];
+    // Create a list of emitters configs to load
+    NSArray *configs = @[
+                         @"Winner Stars.pex",
+                         @"Comet.pex",
+                         @"Foam.pex",
+                         @"Blue Flame.pex",
+                         @"Atomic Bubble.pex",
+                         @"Crazy Blue.pex",
+                         @"Plasma Glow.pex",
+                         @"Meks Blood Spill.pex",
+                         @"Into The Blue.pex",
+                         @"JasonChoi_Flash.pex",
+                         @"Real Popcorn.pex",
+                         @"The Sun.pex",
+                         @"Touch Up.pex",
+                         @"Trippy.pex",
+                         @"Electrons.pex",
+                         @"Blue Galaxy.pex",
+                         @"huo1.pex",
+                         @"JasonChoi_rising up.pex",
+                         @"JasonChoi_Swirl01.pex",
+                         @"Shooting Fireball.pex",
+                         @"wu1.pex"
+                         ];
+    
+    // Create a new array
+    _particleEmitters = [NSMutableArray new];
 
+    // Cycle through all emitters configs loading them
+    for (NSString *config in configs) {
+        ParticleEmitter *particleEmitter = [[ParticleEmitter alloc] initParticleEmitterWithFile:config effectShader:self.particleEmitterEffect];
+        
+        // Center the particle system
+        particleEmitter.sourcePosition = GLKVector2Make(bounds.size.width/2, bounds.size.height/2);
+        
+        [_particleEmitters addObject:particleEmitter];
+    }
+
+    // Set the current emitter to the first in the list
+    [self showNextEmitter];
+    
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glEnable(GL_BLEND);
     glDisable(GL_DEPTH_TEST);
+}
+
+- (void) showNextEmitter
+{
+    // If no enumerator exists or we've reached the last object in the enumerator, create a new enumerator
+    if (!_particleEnumerator || _pe == [_particleEmitters lastObject])
+        _particleEnumerator = [_particleEmitters objectEnumerator];
+
+    // Get the next particle system from the enumerator and reset it
+    _pe = [_particleEnumerator nextObject];
+    [_pe reset];
 }
 
 - (void)tearDownGL
@@ -101,17 +151,20 @@
 
 - (void)update
 {
+    // Update the current particle system according to the time passed since the last update
     [_pe updateWithDelta:self.timeSinceLastUpdate];
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
+    // Render the particle system
     [_pe renderParticles];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [_pe reset];
+    // Show the next particle system
+    [self showNextEmitter];
 }
 
 @end
