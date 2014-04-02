@@ -10,6 +10,7 @@
 		820F93A4189BB50500ADB512 /* Blue Flame.pex in Resources */ = {isa = PBXBuildFile; fileRef = 820F93A3189BB50500ADB512 /* Blue Flame.pex */; };
 		820F93A6189BCC9000ADB512 /* Crazy Blue.pex in Resources */ = {isa = PBXBuildFile; fileRef = 820F93A5189BCC9000ADB512 /* Crazy Blue.pex */; };
 		820F93A8189BCCF400ADB512 /* Comet.pex in Resources */ = {isa = PBXBuildFile; fileRef = 820F93A7189BCCF400ADB512 /* Comet.pex */; };
+		82639CFF18EB17BF00C4C672 /* Giros Gratis.pex in Resources */ = {isa = PBXBuildFile; fileRef = 82639CFE18EB17BF00C4C672 /* Giros Gratis.pex */; };
 		826C1A6018A1065100285947 /* Particle Emitters.pdproject in Resources */ = {isa = PBXBuildFile; fileRef = 826C1A5F18A1065100285947 /* Particle Emitters.pdproject */; };
 		826C1A6218A1072000285947 /* Plasma Glow.pex in Resources */ = {isa = PBXBuildFile; fileRef = 826C1A6118A1072000285947 /* Plasma Glow.pex */; };
 		826C1A6418A109F900285947 /* Meks Blood Spill.pex in Resources */ = {isa = PBXBuildFile; fileRef = 826C1A6318A109F900285947 /* Meks Blood Spill.pex */; };
@@ -50,6 +51,8 @@
 		829B651418980A6A00A2F179 /* ParticleEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 829B651118980A6A00A2F179 /* ParticleEmitter.m */; };
 		829B651518980A6A00A2F179 /* TBXMLParticleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 829B651318980A6A00A2F179 /* TBXMLParticleAdditions.m */; };
 		829B65181898150F00A2F179 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 829B65171898150F00A2F179 /* libz.dylib */; };
+		82D7887418EC107E00AF3573 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 829B64D9189801FB00A2F179 /* Main_iPhone.storyboard */; };
+		82D7887518EC107E00AF3573 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 829B64DC189801FB00A2F179 /* Main_iPad.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,7 @@
 		820F93A3189BB50500ADB512 /* Blue Flame.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Blue Flame.pex"; sourceTree = "<group>"; };
 		820F93A5189BCC9000ADB512 /* Crazy Blue.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Crazy Blue.pex"; sourceTree = "<group>"; };
 		820F93A7189BCCF400ADB512 /* Comet.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Comet.pex; sourceTree = "<group>"; };
+		82639CFE18EB17BF00C4C672 /* Giros Gratis.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Giros Gratis.pex"; sourceTree = "<group>"; };
 		826C1A5F18A1065100285947 /* Particle Emitters.pdproject */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "Particle Emitters.pdproject"; sourceTree = "<group>"; };
 		826C1A6118A1072000285947 /* Plasma Glow.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Plasma Glow.pex"; sourceTree = "<group>"; };
 		826C1A6318A109F900285947 /* Meks Blood Spill.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Meks Blood Spill.pex"; sourceTree = "<group>"; };
@@ -272,6 +276,7 @@
 		829B65191898160B00A2F179 /* Particle Emitter Config */ = {
 			isa = PBXGroup;
 			children = (
+				82639CFE18EB17BF00C4C672 /* Giros Gratis.pex */,
 				826C1A6B18A147B000285947 /* Shooting Fireball.pex */,
 				826C1A6718A1412E00285947 /* Atomic Bubble.pex */,
 				827AE48E18A12E340004EAE6 /* huo1.pex */,
@@ -376,6 +381,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82D7887418EC107E00AF3573 /* Main_iPhone.storyboard in Resources */,
+				82D7887518EC107E00AF3573 /* Main_iPad.storyboard in Resources */,
 				827AE48618A1237D0004EAE6 /* Real Popcorn.pex in Resources */,
 				827AE47B18A123630004EAE6 /* Blue Galaxy.pex in Resources */,
 				827AE48718A1237D0004EAE6 /* The Sun.pex in Resources */,
@@ -388,6 +395,7 @@
 				820F93A4189BB50500ADB512 /* Blue Flame.pex in Resources */,
 				827AE49718A12E340004EAE6 /* wu1.pex in Resources */,
 				820F93A8189BCCF400ADB512 /* Comet.pex in Resources */,
+				82639CFF18EB17BF00C4C672 /* Giros Gratis.pex in Resources */,
 				826C1A6218A1072000285947 /* Plasma Glow.pex in Resources */,
 				826C1A6618A10CC200285947 /* Foam.pex in Resources */,
 				826C1A6018A1065100285947 /* Particle Emitters.pdproject in Resources */,
@@ -516,7 +524,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -550,7 +558,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -565,6 +573,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ParticleEmitterDemoGLKit+ARC/ParticleEmitterDemoGLKit+ARC-Prefix.pch";
 				INFOPLIST_FILE = "ParticleEmitterDemoGLKit+ARC/ParticleEmitterDemoGLKit+ARC-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -578,6 +587,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ParticleEmitterDemoGLKit+ARC/ParticleEmitterDemoGLKit+ARC-Prefix.pch";
 				INFOPLIST_FILE = "ParticleEmitterDemoGLKit+ARC/ParticleEmitterDemoGLKit+ARC-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
